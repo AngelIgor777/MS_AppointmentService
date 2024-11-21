@@ -21,3 +21,11 @@ spring:
     locations: classpath:db/migration
     baseline-on-migrate: true
     schemas: ms_record_sc
+
+server:
+  port: 0
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE:http://localhost:8761/eureka}

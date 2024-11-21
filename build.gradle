@@ -46,13 +46,11 @@ dependencies {
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
     runtimeOnly 'org.postgresql:postgresql'
-<<<<<<< HEAD
+
     //Swagger--
     implementation 'org.springdoc:springdoc-openapi-ui:1.8.0'
     implementation 'io.swagger.core.v3:swagger-annotations:2.2.25'
-=======
     //migration
->>>>>>> 458370c92f08f49d89e21d2dade5ee947066adc8
 
 
     annotationProcessor 'org.projectlombok:lombok'

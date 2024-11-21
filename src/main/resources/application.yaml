@@ -23,7 +23,7 @@ spring:
     schemas: ms_record_sc
 
 server:
-  port: 0
+  port: 6501
 
 eureka:
   client:

@@ -17,11 +17,12 @@ public class RecordService {
     private final RecordRepository repository;
 
     public Record findById(Long id) {
-        return repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Record not found"));
+        return repository.findById(id).orElse(null);
     }
     /*public Integer getRecordAmountByDoctorId(Long id){
          return repository.getRecordAmountByDoctor_id(id);
     }*/
+
     public List<Record> getRecordsByDoctorId(Long id){
         return repository.getRecordsByDoctorId(id);
     }

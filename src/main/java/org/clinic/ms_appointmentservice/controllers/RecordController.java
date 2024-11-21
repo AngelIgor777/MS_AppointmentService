@@ -1,6 +1,8 @@
 package org.clinic.ms_appointmentservice.controllers;
 
 
+import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.clinic.ms_appointmentservice.entity.Record;
@@ -13,6 +15,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+
+@Tag(
+        name = "RecordController",
+        description = "Controller for appointment recording"
+)
 @RestController
 @RequestMapping("/api/v1/records")
 @RequiredArgsConstructor
@@ -22,8 +29,7 @@ public class RecordController {
     private final DoctorService doctorService;
 
 
-    @PostMapping
-    //todo test record availability
+    @PostMapping()
     public ResponseEntity<Record> createRecord(@RequestBody Record record) {
         boolean checkTimeAvailability = doctorService.checkTimeAvailability(record.getDoctorId(), record.getTime());
         if (checkTimeAvailability){
@@ -45,10 +51,7 @@ public class RecordController {
     @GetMapping("/{id}")
     public ResponseEntity<Record> getRecordByID(@PathVariable Long id) {
         Optional<Record> optionalRecord = Optional.ofNullable(recordService.findById(id));
-        if (optionalRecord.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
-        return ResponseEntity.status(HttpStatus.OK).body(optionalRecord.get());
+        return optionalRecord.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
 
     @PutMapping("/{id}")

@@ -1,6 +1,6 @@
 spring:
   application:
-    name: appointment-service
+    name: MsRecord
   #----DataBase settings----
   datasource:
     username: postgres
@@ -29,3 +29,9 @@ eureka:
   client:
     service-url:
       defaultZone: ${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE:http://localhost:8761/eureka}
+
+springdoc:
+  swagger-ui:
+    path: /record-service/swagger-ui/index.html
+  api-docs:
+    path: /record-service/v3/api-docs

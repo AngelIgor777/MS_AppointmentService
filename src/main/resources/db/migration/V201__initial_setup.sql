@@ -1,11 +1,13 @@
-create table clinics
+CREATE SCHEMA IF NOT EXISTS ms_record_sc;
+
+CREATE TABLE IF NOT EXISTS ms_record_sc.clinics
 (
     clinic_id   serial primary key,
     name        varchar(255) not null unique,
     description text
 );
 
-create table doctor_info
+CREATE TABLE IF NOT EXISTS ms_record_sc.doctor_info
 (
     user_id             bigint not null unique,
     clinic_id           bigint references clinics (clinic_id),
@@ -21,7 +23,7 @@ create table doctor_info
     description         text
 );
 -- Таблица записей
-create table records
+CREATE TABLE IF NOT EXISTS ms_record_sc.records
 (
     id         serial primary key,
     patient_id bigint,

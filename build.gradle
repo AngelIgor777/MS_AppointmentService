@@ -46,7 +46,7 @@ dependencies {
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
     runtimeOnly 'org.postgresql:postgresql'
-    //migrations
+    //migration
 
 
     annotationProcessor 'org.projectlombok:lombok'

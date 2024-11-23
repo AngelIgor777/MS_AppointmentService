@@ -35,12 +35,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
 
     implementation group: 'org.flywaydb', name: 'flyway-core', version: '9.22.0'
-
-
-    //swagger
-    implementation 'org.springdoc:springdoc-openapi-ui:1.8.0'
-    implementation 'io.swagger.core.v3:swagger-annotations:2.2.25'
-
+    implementation group: 'org.modelmapper', name: 'modelmapper', version: '3.1.0'
     compileOnly 'org.projectlombok:lombok'
 
     developmentOnly 'org.springframework.boot:spring-boot-devtools'

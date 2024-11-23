@@ -32,7 +32,7 @@ public class RecordController {
     @PostMapping()
     public ResponseEntity<Record> createRecord(@RequestBody Record record) {
         boolean checkTimeAvailability = doctorService.checkTimeAvailability(record.getDoctorId(), record.getTime());
-        if (checkTimeAvailability){
+        if (checkTimeAvailability) {
             Record createdRecord = recordService.saveRecord(record);
             return ResponseEntity.status(HttpStatus.CREATED).body(createdRecord);
         }
@@ -52,6 +52,23 @@ public class RecordController {
     public ResponseEntity<Record> getRecordByID(@PathVariable Long id) {
         Optional<Record> optionalRecord = Optional.ofNullable(recordService.findById(id));
         return optionalRecord.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+    }
+
+    @GetMapping("/{doctorId}")
+    public ResponseEntity<List<Record>> getRecordsByDoctorId(@PathVariable("doctorId") Long doctorId) {
+        List<Record> records = recordService.getRecordsByDoctorId(doctorId);
+        if (records.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(records);
+    }
+    @GetMapping("/{patientId}")
+    public ResponseEntity<List<Record>> getRecordsByPatientId(@PathVariable("patientId") Long patientId) {
+        List<Record> records = recordService.getRecordsByDoctorId(patientId);
+        if (records.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(records);
     }
 
     @PutMapping("/{id}")

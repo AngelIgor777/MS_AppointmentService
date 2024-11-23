@@ -35,3 +35,5 @@ springdoc:
     path: /record-service/swagger-ui/index.html
   api-docs:
     path: /record-service/v3/api-docs
+
+

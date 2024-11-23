@@ -19,13 +19,22 @@ public class RecordService {
     public Record findById(Long id) {
         return repository.findById(id).orElse(null);
     }
-    /*public Integer getRecordAmountByDoctorId(Long id){
-         return repository.getRecordAmountByDoctor_id(id);
-    }*/
 
     public List<Record> getRecordsByDoctorId(Long id){
-        return repository.getRecordsByDoctorId(id);
+        List<Record> records = repository.getRecordsByDoctorId(id);
+        if(records.isEmpty()){
+            return null;
+        }
+        return  records;
     }
+    public List<Record> getRecordsByPatientId(Long id){
+        List<Record> records = repository.getRecordsByPatientId(id);
+        if(records.isEmpty()){
+            return null;
+        }
+        return  records;
+    }
+
     public Record saveRecord(Record record) {
         return repository.save(record);
     }
@@ -41,7 +50,7 @@ public class RecordService {
             repository.save(record);
             return record;
         }
-        throw new EntityNotFoundException("Record by id: " + id + ", not found");
+        return null;
     }
 
     public Long deleteById(Long id){
